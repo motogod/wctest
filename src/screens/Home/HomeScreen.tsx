@@ -41,55 +41,41 @@ const Home = () => {
 
   useEffect(() => {
     // Test iOS axios api undefined
-    // https://opentrust.staging.hongwangtec.com//auth/login/siwe
-    // axios
-    //   .post(
-    //     'https://opentrust.staging.hongwangtec.com//auth/login/siwe',
-    //     null,
-    //     {
-    //       withCredentials: true,
-    //       params: {
-    //         nonce: 'gDaDbSjosgGG8bVnA',
-    //         message:
-    //           'poly-ten-rho.vercel.app wants you to sign in with your Ethereum account:\n0x7cB59F3C39C1a1F1238888A651010a614D2ce8f7\n\nSign in with Ethereum to the native app.\n\nURI: https://poly-ten-rho.vercel.app\nVersion: 1\nChain ID: 1\nNonce: gDaDbSjosgGG8bVnA\nIssued At: 2023-11-28T09:28:58.883Z',
-    //         signature:
-    //           '0x08bb71cac528c8c293662682ada9e5e630113416b8416b0e32b6a12f50f110636e2c0b59852342e8a49f4e659723ff5135cb3755cbcadf663507498a2547069a1b',
-    //         origin: 'metaMask',
-    //       },
-    //     },
-    //   )
-    //   .then(response => {
-    //     console.log('Test Axios response is', response);
-    //   })
-    //   .catch(err => console.log('Test Axios error is', err));
-    // fetch('https://opentrust.staging.hongwangtec.com//auth/login/siwe', {
-    //   method: 'POST',
-    //   body: {
-    //     nonce: 'gDaDbSjosgGG8bVnA',
-    //     message:
-    //       'poly-ten-rho.vercel.app wants you to sign in with your Ethereum account:\n0x7cB59F3C39C1a1F1238888A651010a614D2ce8f7\n\nSign in with Ethereum to the native app.\n\nURI: https://poly-ten-rho.vercel.app\nVersion: 1\nChain ID: 1\nNonce: gDaDbSjosgGG8bVnA\nIssued At: 2023-11-28T09:28:58.883Z',
-    //     signature:
-    //       '0x08bb71cac528c8c293662682ada9e5e630113416b8416b0e32b6a12f50f110636e2c0b59852342e8a49f4e659723ff5135cb3755cbcadf663507498a2547069a1b',
-    //     origin: 'metaMask',
-    //   },
-    //   credentials: 'include',
-    // })
-    //   .then(response => {
-    //     console.log('Test fetch response is', response);
-    //   })
-    //   .catch(err => console.log('Test fetch error is', err));
-    // LoginWithSiwe({
-    //   nonce: 'gDaDbSjosgGG8bVnA',
-    //   message:
-    //     'poly-ten-rho.vercel.app wants you to sign in with your Ethereum account:\n0x7cB59F3C39C1a1F1238888A651010a614D2ce8f7\n\nSign in with Ethereum to the native app.\n\nURI: https://poly-ten-rho.vercel.app\nVersion: 1\nChain ID: 1\nNonce: gDaDbSjosgGG8bVnA\nIssued At: 2023-11-28T09:28:58.883Z',
-    //   signature:
-    //     '0x08bb71cac528c8c293662682ada9e5e630113416b8416b0e32b6a12f50f110636e2c0b59852342e8a49f4e659723ff5135cb3755cbcadf663507498a2547069a1b',
-    //   origin: 'metaMask',
-    // });
-
+    // testing post
     axios
       .post(
-        'https://opentrust.staging.hongwangtec.com//auth/login/siwe',
+        'https://opentrust.staging.hongwangtec.com/testing',
+        {
+          data: 'This is a test from RN iOS Morton',
+        },
+        {
+          headers: {'Content-Type': 'application/json'},
+          // withCredentials: true,
+        },
+      )
+      .then(response => {
+        console.log('axios post test response', response);
+      })
+      .catch(error => {
+        console.log('axios post test error:', error);
+      });
+
+    // testing put
+    axios
+      .put('https://opentrust.staging.hongwangtec.com/testing/123', {
+        data: 'This is a put test from RN iOS Morton',
+      })
+      .then(response => {
+        console.log('axios put response', response);
+      })
+      .catch(error => {
+        console.log('axios put error:', error);
+      });
+
+    // auth/login/siwe
+    axios
+      .post(
+        'https://opentrust.staging.hongwangtec.com/auth/login/siwe',
         {
           nonce: 'gDaDbSjosgGG8bVnA',
           message:
@@ -104,10 +90,10 @@ const Home = () => {
         },
       )
       .then(response => {
-        console.log('axios test response', response);
+        console.log('axios login response', response);
       })
       .catch(error => {
-        console.log('axios test error:', error);
+        console.log('axios login error:', error);
       });
   }, []);
 
